@@ -1,7 +1,7 @@
 mkdir youtube_fetcher
 cd youtube_fetcher
 python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate
 pip install -r requirements.txt
 django-admin startproject core .
 django-admin startapp videos 

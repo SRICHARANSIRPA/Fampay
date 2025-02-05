@@ -17,11 +17,11 @@ class VideoViewSet(viewsets.ReadOnlyModelViewSet):
         search_query = request.query_params.get('search', None)
         
         if search_query:
-            # Use Elasticsearch for search
+            # Elasticsearch for searching videos
             q = Q('multi_match', query=search_query, fields=['title', 'description'])
             search = VideoDocument.search().query(q)
             
-            # Get paginated results
+            # Paginate results
             page = self.paginate_queryset(search[:100].to_queryset())
             if page is not None:
                 serializer = self.get_serializer(page, many=True)
