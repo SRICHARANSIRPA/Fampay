@@ -1,0 +1,15 @@
+mkdir youtube_fetcher
+cd youtube_fetcher
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+django-admin startproject core .
+django-admin startapp videos 
+python manage.py makemigrations
+python manage.py migrate 
+python manage.py runserver 
+celery -A core worker -l info
+celery -A core beat -l info 
+python manage.py add_api_key "your_api_key_1"
+python manage.py add_api_key "your_api_key_2" 
+python manage.py setup_elasticsearch 
